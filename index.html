@@ -1,0 +1,773 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dividends Policy Mastery Quiz</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@4.5.0/index.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cairo@4.5.0/index.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
+.bg-mesh{position:fixed;inset:0;background:radial-gradient(ellipse at 20% 30%,rgba(20,184,166,.12) 0%,transparent 50%),radial-gradient(ellipse at 80% 70%,rgba(244,63,94,.1) 0%,transparent 50%),radial-gradient(ellipse at 50% 50%,rgba(245,158,11,.06) 0%,transparent 50%);pointer-events:none;z-index:0}
+.glass{background:rgba(255,255,255,.04);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08)}
+.glass-strong{background:rgba(255,255,255,.07);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,.12)}
+.gt-teal{background:linear-gradient(135deg,#14b8a6,#0d9488,#0f766e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt-indigo{background:linear-gradient(135deg,#818cf8,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt-rose{background:linear-gradient(135deg,#fb7185,#f43f5e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt-amber{background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt-emerald{background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.btn{transition:all .3s cubic-bezier(.4,0,.2,1);font-weight:600;cursor:pointer;border:none;outline:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:linear-gradient(135deg,#14b8a6,#0d9488);color:#fff}
+.btn-primary:hover{box-shadow:0 10px 40px rgba(20,184,166,.4);transform:translateY(-2px)}
+.btn-gold{background:linear-gradient(135deg,#f59e0b,#d97706);color:#1a1a2e}
+.btn-gold:hover{box-shadow:0 10px 40px rgba(245,158,11,.4);transform:translateY(-2px)}
+.btn-rose{background:linear-gradient(135deg,#f43f5e,#e11d48);color:#fff}
+.btn-rose:hover{box-shadow:0 10px 40px rgba(244,63,94,.4);transform:translateY(-2px)}
+.btn-emerald{background:linear-gradient(135deg,#10b981,#059669);color:#fff}
+.btn-emerald:hover{box-shadow:0 10px 40px rgba(16,185,129,.4);transform:translateY(-2px)}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,.2);color:#e2e8f0}
+.btn-outline:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.3)}
+.btn-toggle{background:linear-gradient(135deg,#f43f5e,#e11d48);color:#fff;transition:all .3s}
+.btn-toggle:hover{box-shadow:0 0 25px rgba(244,63,94,.5);transform:translateY(-2px)}
+.btn-toggle.active{background:linear-gradient(135deg,#10b981,#059669);box-shadow:0 0 25px rgba(16,185,129,.4)}
+.option-btn{transition:all .3s cubic-bezier(.4,0,.2,1);cursor:pointer}
+.option-btn:hover:not(.disabled){transform:translateX(-4px);border-color:rgba(20,184,166,.5);background:rgba(20,184,166,.08)}
+.option-btn.selected{border-color:#14b8a6!important;background:rgba(20,184,166,.15)!important;box-shadow:0 0 20px rgba(20,184,166,.2)!important}
+.option-btn.correct{border-color:#10b981!important;background:rgba(16,185,129,.15)!important;box-shadow:0 0 25px rgba(16,185,129,.35)!important}
+.option-btn.wrong{border-color:#f43f5e!important;background:rgba(244,63,94,.15)!important;box-shadow:0 0 25px rgba(244,63,94,.35)!important}
+.option-btn.disabled{pointer-events:none;opacity:.85}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.fade-in{animation:fadeIn .5s ease forwards}
+.scale-in{animation:scaleIn .4s ease forwards}
+.explanation-box{animation:fadeIn .4s ease forwards}
+.translation-visible{animation:fadeIn .3s ease forwards}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:rgba(255,255,255,.02)}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
+.stopwatch{font-variant-numeric:tabular-nums;letter-spacing:.05em}
+.sticky-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(10,14,26,.9);border-bottom:1px solid rgba(255,255,255,.08)}
+.question-card{transition:all .3s}
+.question-card.answered-correct{border-left:4px solid #10b981}
+.question-card.answered-wrong{border-left:4px solid #f43f5e}
+.category-divider{position:sticky;top:72px;z-index:40;scroll-margin-top:80px}
+.stat-card{transition:all .3s}
+.stat-card:hover{transform:translateY(-4px)}
+.filter-btn{transition:all .3s;cursor:pointer}
+.filter-btn:hover{transform:translateY(-2px)}
+.filter-btn.active{box-shadow:0 0 25px rgba(20,184,166,.4);transform:translateY(-2px)}
+.hidden-q{display:none!important}
+.modal-overlay{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.8);backdrop-filter:blur(10px)}
+.modal-overlay.hidden{display:none}
+.modal-content{max-width:900px;width:100%;max-height:90vh;overflow-y:auto;animation:scaleIn .4s ease}
+.concept-card{transition:all .3s}
+.concept-card:hover{transform:translateY(-4px);box-shadow:0 10px 40px rgba(20,184,166,.2)}
+.bilingual-q{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;transition:all .3s}
+@media(max-width:768px){.bilingual-q{grid-template-columns:1fr;}}
+.bilingual-en{color:#f1f5f9;font-weight:600;font-size:1rem;line-height:1.6}
+.bilingual-ar{color:#fda4af;font-size:.9rem;line-height:1.7;padding:12px 16px;background:rgba(244,63,94,.08);border-radius:12px;border-right:3px solid #f43f5e;transition:all .3s}
+.option-bilingual{display:flex;flex-direction:column;gap:4px}
+.option-en{color:#f1f5f9;font-weight:500;font-size:.9rem}
+.option-ar{color:#fda4af;font-size:.8rem;padding-top:4px;border-top:1px dashed rgba(244,63,94,.2);transition:all .3s}
+</style>
+</head>
+<body>
+<div class="bg-mesh"></div>
+
+<!-- ========== KEY CONCEPTS MODAL ========== -->
+<div id="conceptsModal" class="modal-overlay hidden">
+<div class="modal-content glass-strong rounded-3xl p-8">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-3xl font-black gt-teal"><i class="fas fa-book-open mr-2"></i>Key Concepts Review</h2>
+<button type="button" id="closeModalBtn" class="btn btn-outline px-4 py-2 rounded-xl"><i class="fas fa-times"></i></button>
+</div>
+<div class="space-y-4">
+<div class="concept-card glass rounded-2xl p-5 border-l-4 border-teal-500">
+<h3 class="font-bold text-teal-300 text-lg mb-2"><i class="fas fa-percentage mr-2"></i>Payout & Retention Ratios</h3>
+<p class="text-slate-300 text-sm mb-2"><strong>Payout Ratio:</strong> DPS / EPS</p>
+<p class="text-slate-300 text-sm"><strong>Retention Ratio:</strong> 1 − Payout Ratio</p>
+</div>
+<div class="concept-card glass rounded-2xl p-5 border-l-4 border-indigo-500">
+<h3 class="font-bold text-indigo-300 text-lg mb-2"><i class="fas fa-calendar-alt mr-2"></i>Dividend Dates</h3>
+<p class="text-slate-300 text-sm"><strong>Ex-dividend date:</strong> Record date − 2 business days</p>
+</div>
+<div class="concept-card glass rounded-2xl p-5 border-l-4 border-rose-500">
+<h3 class="font-bold text-rose-300 text-lg mb-2"><i class="fas fa-chart-line mr-2"></i>Dividend Policies</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+<div><strong class="text-teal-300">Constant Payout:</strong> <span class="text-slate-300">Fixed % of earnings</span></div>
+<div><strong class="text-indigo-300">Regular:</strong> <span class="text-slate-300">Fixed $ dividend</span></div>
+<div><strong class="text-amber-300">Low-Regular-Extra:</strong> <span class="text-slate-300">Base + extra when EPS high</span></div>
+<div><strong class="text-emerald-300">Residual:</strong> <span class="text-slate-300">After funding equity needs</span></div>
+</div>
+</div>
+<div class="concept-card glass rounded-2xl p-5 border-l-4 border-amber-500">
+<h3 class="font-bold text-amber-300 text-lg mb-2"><i class="fas fa-share-alt mr-2"></i>Stock Dividends & Splits</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+<div class="text-slate-300"><strong class="text-teal-300">New shares:</strong> Old shares × Stock dividend %</div>
+<div class="text-slate-300"><strong class="text-rose-300">New price:</strong> Old price × Old shares / New shares</div>
+</div>
+</div>
+<div class="concept-card glass rounded-2xl p-5 border-l-4 border-emerald-500">
+<h3 class="font-bold text-emerald-300 text-lg mb-2"><i class="fas fa-undo mr-2"></i>Share Repurchases</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+<div class="text-slate-300"><strong class="text-teal-300">Shares repurchased:</strong> Cash / Price</div>
+<div class="text-slate-300"><strong class="text-indigo-300">New EPS:</strong> Earnings / (Shares − Repurchased)</div>
+</div>
+</div>
+</div>
+<div class="mt-6 text-center">
+<button type="button" id="gotItBtn" class="btn btn-primary px-8 py-3 rounded-xl text-lg"><i class="fas fa-check"></i> Got it, Close</button>
+</div>
+</div>
+</div>
+
+<!-- ========== WELCOME SCREEN ========== -->
+<div id="welcomeScreen" class="min-h-screen flex flex-col items-center justify-center p-4 relative z-10">
+<div class="text-center max-w-5xl mx-auto">
+<div class="mb-8 scale-in">
+<div class="w-28 h-28 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-teal-500 to-rose-500 flex items-center justify-center text-5xl shadow-2xl" style="animation:float 3s ease infinite">
+<i class="fas fa-money-bill-wave text-white"></i>
+</div>
+<h1 class="text-5xl md:text-7xl font-black mb-3 gt-teal">Dividends Policy</h1>
+<h2 class="text-2xl md:text-3xl text-slate-300 mb-2 font-bold">Payout & Distribution Mastery</h2>
+<p class="text-slate-400 text-lg">Chapter 14: Dividends Payout Policy</p>
+<p class="text-slate-500 text-sm mt-2">Ross, Westerfield, Jordan</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+<div class="glass-strong rounded-2xl p-5 text-center stat-card">
+<div class="w-12 h-12 mx-auto mb-2 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center"><i class="fas fa-list-check text-white text-xl"></i></div>
+<div class="text-3xl font-black gt-indigo">20</div>
+<div class="text-xs text-slate-400 mt-1">MCQ Questions</div>
+</div>
+<div class="glass-strong rounded-2xl p-5 text-center stat-card">
+<div class="w-12 h-12 mx-auto mb-2 rounded-xl bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center"><i class="fas fa-file-lines text-white text-xl"></i></div>
+<div class="text-3xl font-black gt-rose">10</div>
+<div class="text-xs text-slate-400 mt-1">Scenario Based</div>
+</div>
+<div class="glass-strong rounded-2xl p-5 text-center stat-card">
+<div class="w-12 h-12 mx-auto mb-2 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center"><i class="fas fa-layer-group text-white text-xl"></i></div>
+<div class="text-3xl font-black gt-amber">10</div>
+<div class="text-xs text-slate-400 mt-1">Classification</div>
+</div>
+<div class="glass-strong rounded-2xl p-5 text-center stat-card">
+<div class="w-12 h-12 mx-auto mb-2 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center"><i class="fas fa-check-double text-white text-xl"></i></div>
+<div class="text-3xl font-black gt-emerald">5</div>
+<div class="text-xs text-slate-400 mt-1">True / False</div>
+</div>
+</div>
+<div class="glass-strong rounded-3xl p-6 mb-8">
+<h3 class="text-xl font-bold gt-teal mb-4"><i class="fas fa-star mr-2"></i>Features</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+<div class="flex items-center gap-3 text-slate-300"><i class="fas fa-book-open text-teal-400 text-xl"></i><span>Key Concepts Review</span></div>
+<div class="flex items-center gap-3 text-slate-300"><i class="fas fa-language text-rose-400 text-xl"></i><span>Bilingual Display (EN + AR)</span></div>
+<div class="flex items-center gap-3 text-slate-300"><i class="fas fa-filter text-amber-400 text-xl"></i><span>Category Filters</span></div>
+<div class="flex items-center gap-3 text-slate-300"><i class="fas fa-stopwatch text-emerald-400 text-xl"></i><span>Stopwatch Timer</span></div>
+<div class="flex items-center gap-3 text-slate-300"><i class="fas fa-file-word text-indigo-400 text-xl"></i><span>Export to Word</span></div>
+<div class="flex items-center gap-3 text-slate-300"><i class="fas fa-chart-line text-teal-400 text-xl"></i><span>Performance Analytics</span></div>
+</div>
+</div>
+<div>
+<label class="block text-slate-400 text-sm mb-2">Your Name</label>
+<input id="playerName" type="text" placeholder="Enter your name..." class="w-full max-w-md mx-auto block glass-strong rounded-xl px-5 py-3 text-center text-white outline-none focus:border-teal-500 transition mb-6" />
+<div class="flex flex-wrap justify-center gap-3">
+<button type="button" id="reviewConceptsBtn" class="btn btn-gold text-lg px-8 py-4 rounded-2xl"><i class="fas fa-book-open"></i> Review Key Concepts</button>
+<button type="button" id="startQuizBtn" class="btn btn-primary text-lg px-12 py-4 rounded-2xl"><i class="fas fa-play"></i> Start Quiz</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== QUIZ SCREEN ========== -->
+<div id="quizScreen" class="hidden relative z-10">
+<div class="sticky-header">
+<div class="max-w-5xl mx-auto px-4 py-3">
+<div class="flex items-center justify-between flex-wrap gap-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-rose-500 flex items-center justify-center"><i class="fas fa-money-bill-wave text-white"></i></div>
+<div><div class="font-bold text-white text-sm">Dividends Policy Quiz</div><div class="text-xs text-slate-400" id="headerPlayerName">Learner</div></div>
+</div>
+<div class="flex items-center gap-3 flex-wrap">
+<button type="button" id="globalTranslationToggle" class="btn btn-toggle px-4 py-2 rounded-xl text-sm"><i class="fas fa-language"></i><span id="translationToggleText">Hide Translation</span></button>
+<div class="glass rounded-xl px-4 py-2 flex items-center gap-2"><i class="fas fa-stopwatch text-teal-400"></i><span id="stopwatchDisplay" class="stopwatch font-bold text-teal-400">00:00</span></div>
+<div class="glass rounded-xl px-4 py-2 flex items-center gap-2"><i class="fas fa-star text-amber-400"></i><span id="scoreDisplay" class="font-bold text-amber-400">0</span><span class="text-slate-500 text-sm">/ <span id="totalQuestions">45</span></span></div>
+</div>
+</div>
+<div class="w-full bg-slate-800/50 rounded-full h-1.5 overflow-hidden mt-3">
+<div id="progressBar" class="h-full rounded-full bg-gradient-to-r from-teal-500 via-rose-500 to-amber-500 transition-all duration-500" style="width:0%"></div>
+</div>
+<div class="flex justify-between text-xs text-slate-500 mt-1"><span id="answeredCount">0 answered</span><span id="progressPercent">0%</span></div>
+</div>
+</div>
+
+<div class="max-w-5xl mx-auto px-4 pt-4">
+<div class="glass-strong rounded-2xl p-4">
+<div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+<h3 class="font-bold text-slate-300 text-sm"><i class="fas fa-filter mr-2 text-teal-400"></i>Quick Filter</h3>
+<span class="text-xs text-slate-500">Click to jump to category</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-2">
+<button type="button" data-filter="all" class="filter-btn active glass rounded-xl p-3 text-center"><div class="flex items-center justify-center gap-2 mb-1"><i class="fas fa-grip text-white"></i><span class="font-bold text-white text-sm">All</span></div><div class="text-xs text-slate-400">45 Questions</div></button>
+<button type="button" data-filter="mcq" class="filter-btn glass rounded-xl p-3 text-center"><div class="flex items-center justify-center gap-2 mb-1"><i class="fas fa-list-check text-indigo-400"></i><span class="font-bold text-indigo-300 text-sm">MCQ</span></div><div class="text-xs text-slate-400">20 Questions</div></button>
+<button type="button" data-filter="scenario" class="filter-btn glass rounded-xl p-3 text-center"><div class="flex items-center justify-center gap-2 mb-1"><i class="fas fa-file-lines text-rose-400"></i><span class="font-bold text-rose-300 text-sm">Scenario</span></div><div class="text-xs text-slate-400">10 Questions</div></button>
+<button type="button" data-filter="classification" class="filter-btn glass rounded-xl p-3 text-center"><div class="flex items-center justify-center gap-2 mb-1"><i class="fas fa-layer-group text-amber-400"></i><span class="font-bold text-amber-300 text-sm">Classify</span></div><div class="text-xs text-slate-400">10 Questions</div></button>
+<button type="button" data-filter="truefalse" class="filter-btn glass rounded-xl p-3 text-center"><div class="flex items-center justify-center gap-2 mb-1"><i class="fas fa-check-double text-emerald-400"></i><span class="font-bold text-emerald-300 text-sm">T / F</span></div><div class="text-xs text-slate-400">5 Questions</div></button>
+</div>
+</div>
+</div>
+
+<div class="max-w-5xl mx-auto px-4 py-6">
+<div id="questionsContainer" class="space-y-6"></div>
+<div class="mt-10 mb-8 glass-strong rounded-3xl p-6">
+<div class="text-center mb-6">
+<h3 class="text-2xl font-black gt-teal mb-2">Ready to Submit?</h3>
+<p class="text-slate-400 text-sm">Review your answers or submit to see your results</p>
+</div>
+<div class="flex flex-wrap justify-center gap-3">
+<button type="button" id="exportWordBtn1" class="btn btn-emerald px-6 py-3 rounded-xl"><i class="fas fa-file-word"></i> Export to Word</button>
+<button type="button" id="submitQuizBtn" class="btn btn-primary px-8 py-3 rounded-xl"><i class="fas fa-flag-checkered"></i> Submit & See Results</button>
+<button type="button" id="restartBtn1" class="btn btn-outline px-6 py-3 rounded-xl"><i class="fas fa-redo"></i> Restart</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== RESULTS SCREEN ========== -->
+<div id="resultsScreen" class="hidden min-h-screen relative z-10 py-8">
+<div class="max-w-4xl mx-auto px-4">
+<div class="glass-strong rounded-3xl p-8 text-center mb-6 scale-in">
+<div class="w-24 h-24 mx-auto mb-4 rounded-3xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-5xl shadow-2xl"><i class="fas fa-trophy text-white"></i></div>
+<h2 class="text-4xl font-black gt-teal mb-2">Final Results</h2>
+<p class="text-slate-400 mb-6" id="resultPlayerName"></p>
+<div class="text-7xl font-black mb-2"><span id="finalScore" class="gt-teal">0</span><span class="text-slate-500 text-3xl">/ <span id="totalPossible">45</span></span></div>
+<div class="text-2xl text-slate-300 mb-2"><span id="percentage">0</span>%</div>
+<div id="gradeBadge" class="inline-block text-lg px-6 py-2 mt-2 rounded-full font-bold text-white"></div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+<div class="glass rounded-2xl p-4 text-center stat-card"><i class="fas fa-check-circle text-emerald-400 text-2xl mb-2"></i><div id="correctCount" class="text-3xl font-black text-emerald-400">0</div><div class="text-xs text-slate-400">Correct</div></div>
+<div class="glass rounded-2xl p-4 text-center stat-card"><i class="fas fa-times-circle text-rose-400 text-2xl mb-2"></i><div id="wrongCount" class="text-3xl font-black text-rose-400">0</div><div class="text-xs text-slate-400">Wrong</div></div>
+<div class="glass rounded-2xl p-4 text-center stat-card"><i class="fas fa-clock text-teal-400 text-2xl mb-2"></i><div id="totalTime" class="text-3xl font-black text-teal-400">0:00</div><div class="text-xs text-slate-400">Total Time</div></div>
+<div class="glass rounded-2xl p-4 text-center stat-card"><i class="fas fa-bolt text-amber-400 text-2xl mb-2"></i><div id="avgTime" class="text-3xl font-black text-amber-400">0s</div><div class="text-xs text-slate-400">Avg / Question</div></div>
+</div>
+<div class="glass-strong rounded-3xl p-6 mb-6">
+<h3 class="text-xl font-bold gt-indigo mb-4"><i class="fas fa-chart-bar mr-2"></i>Performance by Category</h3>
+<div id="categoryBreakdown" class="space-y-4"></div>
+</div>
+<div class="glass-strong rounded-3xl p-6 mb-6">
+<h3 class="text-xl font-bold gt-teal mb-4"><i class="fas fa-medal mr-2"></i>Achievement Badges</h3>
+<div id="badgesContainer" class="flex flex-wrap gap-3 justify-center"></div>
+</div>
+<div class="text-center">
+<button type="button" id="exportWordBtn2" class="btn btn-emerald px-6 py-3 rounded-xl mr-2"><i class="fas fa-file-word"></i> Export to Word</button>
+<button type="button" id="reviewAnswersBtn" class="btn btn-outline px-6 py-3 rounded-xl mr-2"><i class="fas fa-search"></i> Review Answers</button>
+<button type="button" id="restartBtn2" class="btn btn-primary px-8 py-3 rounded-xl"><i class="fas fa-redo"></i> Restart Quiz</button>
+</div>
+</div>
+</div>
+
+<!-- ========== REVIEW SCREEN ========== -->
+<div id="reviewScreen" class="hidden min-h-screen relative z-10 py-8">
+<div class="max-w-5xl mx-auto px-4">
+<div class="glass-strong rounded-2xl p-4 mb-4 flex items-center justify-between flex-wrap gap-2">
+<h2 class="text-xl font-bold gt-teal"><i class="fas fa-search mr-2"></i>Review Answers</h2>
+<div class="flex gap-2">
+<button type="button" id="exportWordBtn3" class="btn btn-emerald px-4 py-2 rounded-xl text-sm"><i class="fas fa-file-word"></i> Word</button>
+<button type="button" id="backToResultsBtn" class="btn btn-outline px-4 py-2 rounded-xl text-sm"><i class="fas fa-arrow-left"></i> Back</button>
+</div>
+</div>
+<div id="reviewContainer" class="space-y-4"></div>
+<div class="text-center mt-6 mb-8">
+<button type="button" id="backToResultsBtn2" class="btn btn-primary px-8 py-3 rounded-xl"><i class="fas fa-arrow-left"></i> Back to Results</button>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+const allQuestions = {
+mcq: [
+{en:"What is the formula for Payout Ratio?",ar:"ما هي صيغة نسبة التوزيع؟",options:[{en:"DPS / EPS",ar:"DPS / EPS"},{en:"EPS / DPS",ar:"EPS / DPS"},{en:"DPS × EPS",ar:"DPS × EPS"},{en:"1 − DPS",ar:"1 − DPS"}],correct:0,explanation:{en:"Payout Ratio = Dividends Per Share / Earnings Per Share. It indicates the percentage of earnings distributed to shareholders.",ar:"نسبة التوزيع = توزيعات الأرباح للسهم / ربحية السهم. تشير إلى نسبة الأرباح الموزعة على المساهمين."}},
+{en:"Retention Ratio is calculated as:",ar:"تُحسب نسبة الاحتفاظ كالتالي:",options:[{en:"1 + Payout Ratio",ar:"1 + نسبة التوزيع"},{en:"1 − Payout Ratio",ar:"1 − نسبة التوزيع"},{en:"Payout Ratio / 2",ar:"نسبة التوزيع / 2"},{en:"DPS / EPS",ar:"DPS / EPS"}],correct:1,explanation:{en:"Retention Ratio = 1 − Payout Ratio. It tells us how much the company retains for reinvestment.",ar:"نسبة الاحتفاظ = 1 − نسبة التوزيع. تخبرنا كم تحتفظ الشركة لإعادة الاستثمار."}},
+{en:"Ex-dividend date is:",ar:"تاريخ ما عدا الأرباح هو:",options:[{en:"Record date + 2 business days",ar:"تاريخ التسجيل + يومين عمل"},{en:"Record date − 2 business days",ar:"تاريخ التسجيل − يومين عمل"},{en:"Payment date − 1 day",ar:"تاريخ الدفع − يوم واحد"},{en:"Declaration date + 10 days",ar:"تاريخ الإعلان + 10 أيام"}],correct:1,explanation:{en:"Ex-dividend date = Record date − 2 business days. Investors buying on or after this date do NOT receive the dividend.",ar:"تاريخ ما عدا الأرباح = تاريخ التسجيل − يومين عمل. المستثمرون الذين يشترون في هذا التاريخ أو بعده لا يحصلون على الأرباح."}},
+{en:"Under Constant Payout Ratio policy, if EPS is negative, DPS is:",ar:"تحت سياسة نسبة التوزيع الثابتة، إذا كانت EPS سالبة، فإن DPS تكون:",options:[{en:"Negative",ar:"سالبة"},{en:"Zero",ar:"صفر"},{en:"Same as before",ar:"نفس ما كانت عليه"},{en:"Positive",ar:"موجبة"}],correct:1,explanation:{en:"If EPS ≤ 0, then DPS = 0. No dividends are paid when there are losses.",ar:"إذا كانت EPS ≤ 0، فإن DPS = 0. لا تُدفع أرباح عند وجود خسائر."}},
+{en:"Regular Dividend Policy means:",ar:"تعني سياسة الأرباح المنتظمة:",options:[{en:"Fixed percentage of earnings",ar:"نسبة ثابتة من الأرباح"},{en:"Fixed-dollar amount each period",ar:"مبلغ ثابت بالدولار كل فترة"},{en:"Variable dividends",ar:"أرباح متغيرة"},{en:"No dividends",ar:"لا أرباح"}],correct:1,explanation:{en:"Regular dividend policy pays a fixed-dollar dividend each period regardless of earnings fluctuations.",ar:"سياسة الأرباح المنتظمة تدفع مبلغًا ثابتًا بالدولار كل فترة بغض النظر عن تقلبات الأرباح."}},
+{en:"Low-Regular-and-Extra policy pays:",ar:"تدفع سياسة المنخفض-المنتظم-والإضافي:",options:[{en:"Only regular dividends",ar:"فقط الأرباح المنتظمة"},{en:"Only extra dividends",ar:"فقط الأرباح الإضافية"},{en:"Low regular + extra when EPS high",ar:"منتظم منخفض + إضافي عندما تكون EPS مرتفعة"},{en:"No dividends",ar:"لا أرباح"}],correct:2,explanation:{en:"This policy pays a low regular dividend plus an extra dividend when earnings exceed a threshold.",ar:"هذه السياسة تدفع ربحًا منتظمًا منخفضًا بالإضافة إلى ربح إضافي عندما تتجاوز الأرباح حدًا معينًا."}},
+{en:"Residual Dividend Policy prioritizes:",ar:"تعطي سياسة الأرباح المتبقية الأولوية لـ:",options:[{en:"Dividend payments",ar:"مدفوعات الأرباح"},{en:"Investment needs",ar:"احتياجات الاستثمار"},{en:"Share repurchases",ar:"إعادة شراء الأسهم"},{en:"Debt repayment",ar:"سداد الديون"}],correct:1,explanation:{en:"Residual policy pays dividends from earnings LEFT AFTER funding the equity portion of capital budget.",ar:"السياسة المتبقية تدفع الأرباح من الأرباح المتبقية بَعْد تمويل حصة حقوق الملكية من ميزانية رأس المال."}},
+{en:"Formula for Extra Dividend is:",ar:"صيغة الربح الإضافي هي:",options:[{en:"Extra rate × EPS",ar:"المعدل الإضافي × EPS"},{en:"Extra rate × (EPS − Threshold)",ar:"المعدل الإضافي × (EPS − العتبة)"},{en:"EPS / Extra rate",ar:"EPS / المعدل الإضافي"},{en:"Threshold − EPS",ar:"العتبة − EPS"}],correct:1,explanation:{en:"Extra dividend = Extra rate × (EPS − Threshold). Paid only when EPS exceeds the threshold.",ar:"الربح الإضافي = المعدل الإضافي × (EPS − العتبة). يُدفع فقط عندما تتجاوز EPS العتبة."}},
+{en:"Stock dividend results in:",ar:"يؤدي الربح السهمي إلى:",options:[{en:"Cash payment",ar:"دفعة نقدية"},{en:"Additional shares",ar:"أسهم إضافية"},{en:"Share reduction",ar:"تخفيض الأسهم"},{en:"No change",ar:"لا تغيير"}],correct:1,explanation:{en:"Stock dividend gives investors additional shares in proportion to existing holdings. Price declines proportionally.",ar:"الربح السهمي يمنح المستثمرين أسهمًا إضافية بنسبة إلى holdings الموجودة. ينخفض السعر بشكل متناسب."}},
+{en:"New shares after stock dividend = ",ar:"الأسهم الجديدة بعد الربح السهمي = ",options:[{en:"Old shares × Stock dividend %",ar:"الأسهم القديمة × نسبة الربح السهمي"},{en:"Old shares / Stock dividend %",ar:"الأسهم القديمة / نسبة الربح السهمي"},{en:"Old shares + Stock dividend %",ar:"الأسهم القديمة + نسبة الربح السهمي"},{en:"Old shares − Stock dividend %",ar:"الأسهم القديمة − نسبة الربح السهمي"}],correct:0,explanation:{en:"New shares = Old shares × Stock dividend %. Total shares = Old + New shares.",ar:"الأسهم الجديدة = الأسهم القديمة × نسبة الربح السهمي. إجمالي الأسهم = القديمة + الجديدة."}},
+{en:"After stock dividend, new price = ",ar:"بعد الربح السهمي، السعر الجديد = ",options:[{en:"Old price × Old shares / New shares",ar:"السعر القديم × الأسهم القديمة / الأسهم الجديدة"},{en:"Old price × New shares / Old shares",ar:"السعر القديم × الأسهم الجديدة / الأسهم القديمة"},{en:"Old price + Stock dividend %",ar:"السعر القديم + نسبة الربح السهمي"},{en:"Old price − Stock dividend %",ar:"السعر القديم − نسبة الربح السهمي"}],correct:0,explanation:{en:"New price = Old price × Old shares / New shares. Total market value remains unchanged.",ar:"السعر الجديد = السعر القديم × الأسهم القديمة / الأسهم الجديدة. إجمالي القيمة السوقية يبقى دون تغيير."}},
+{en:"Share repurchase is:",ar:"إعادة شراء الأسهم هي:",options:[{en:"Paying dividends",ar:"دفع الأرباح"},{en:"Buying back company shares",ar:"شراء أسهم الشركة مرة أخرى"},{en:"Issuing new shares",ar:"إصدار أسهم جديدة"},{en:"Splitting shares",ar:"تقسيم الأسهم"}],correct:1,explanation:{en:"Share repurchase is when a firm buys back its own shares. It's an alternative to dividends.",ar:"إعادة شراء الأسهم هي عندما تشتري الشركة أسهمها الخاصة. إنها بديل للأرباح."}},
+{en:"Shares repurchased = ",ar:"الأسهم المعاد شراؤها = ",options:[{en:"Cash × Price",ar:"النقد × السعر"},{en:"Cash / Price",ar:"النقد / السعر"},{en:"Price / Cash",ar:"السعر / النقد"},{en:"Cash + Price",ar:"النقد + السعر"}],correct:1,explanation:{en:"Shares repurchased = Total cash available / Repurchase price per share.",ar:"الأسهم المعاد شراؤها = إجمالي النقد المتاح / سعر إعادة الشراء للسهم."}},
+{en:"After repurchase, new EPS = ",ar:"بعد إعادة الشراء، EPS الجديدة = ",options:[{en:"Earnings / (Shares + Repurchased)",ar:"الأرباح / (الأسهم + المعاد شراؤها)"},{en:"Earnings / (Shares − Repurchased)",ar:"الأرباح / (الأسهم − المعاد شراؤها)"},{en:"Old EPS × Shares",ar:"EPS القديمة × الأسهم"},{en:"Earnings × Shares",ar:"الأرباح × الأسهم"}],correct:1,explanation:{en:"New EPS = Earnings / (Shares outstanding − Shares repurchased). Fewer shares can increase EPS.",ar:"EPS الجديدة = الأرباح / (الأسهم القائمة − الأسهم المعاد شراؤها). الأسهم الأقل يمكن أن تزيد EPS."}},
+{en:"DRIP stands for:",ar:"DRIP تعني:",options:[{en:"Dividend Reinvestment Investment Plan",ar:"خطة إعادة استثمار الأرباح الاستثمارية"},{en:"Dividend Reinvestment Plan",ar:"خطة إعادة استثمار الأرباح"},{en:"Direct Return Investment Program",ar:"برنامج الاستثمار المباشر للعائد"},{en:"Distributed Return Income Plan",ar:"خطة دخل العائد الموزع"}],correct:1,explanation:{en:"DRIP = Dividend Reinvestment Plan. Allows shareholders to automatically reinvest dividends to buy more shares.",ar:"DRIP = خطة إعادة استثمار الأرباح. تسمح للمساهمين بإعادة استثمار الأرباح تلقائيًا لشراء المزيد من الأسهم."}},
+{en:"DRIP with discount means:",ar:"DRIP مع خصم يعني:",options:[{en:"Full market price",ar:"سعر السوق الكامل"},{en:"Discounted price below market",ar:"سعر مخفض أقل من السوق"},{en:"No shares purchased",ar:"لا أسهم تم شراؤها"},{en:"Cash payment only",ar:"دفعة نقدية فقط"}],correct:1,explanation:{en:"DRIP with discount allows buying shares at a price below market value (e.g., 5% discount).",ar:"DRIP مع خصم يسمح بشراء الأسهم بسعر أقل من قيمة السوق (مثل خصم 5%)."}},
+{en:"A 2-for-1 stock split means:",ar:"تقسيم الأسهم 2-لـ-1 يعني:",options:[{en:"Shares double, price halves",ar:"الأسهم تتضاعف، السعر ينصف"},{en:"Shares halve, price doubles",ar:"الأسهم تنصف، السعر يتضاعف"},{en:"No change",ar:"لا تغيير"},{en:"Shares triple",ar:"الأسهم تتضاعف ثلاث مرات"}],correct:0,explanation:{en:"2-for-1 split: New shares = Old × 2, New price = Old / 2. Total value unchanged.",ar:"تقسيم 2-لـ-1: الأسهم الجديدة = القديمة × 2، السعر الجديد = القديم / 2. القيمة الإجمالية دون تغيير."}},
+{en:"Reverse split 1-for-5 means:",ar:"التقسيم العكسي 1-لـ-5 يعني:",options:[{en:"Shares increase 5×",ar:"الأسهم تزيد 5 مرات"},{en:"Shares decrease to 1/5",ar:"الأسهم تنخفض إلى 1/5"},{en:"Price decreases",ar:"السعر ينخفض"},{en:"No change",ar:"لا تغيير"}],correct:1,explanation:{en:"1-for-5 reverse split: New shares = Old / 5, New price = Old × 5.",ar:"التقسيم العكسي 1-لـ-5: الأسهم الجديدة = القديمة / 5، السعر الجديد = القديم × 5."}},
+{en:"Equity needed for residual policy = ",ar:"حقوق الملكية المطلوبة للسياسة المتبقية = ",options:[{en:"Target equity ratio + Capital budget",ar:"نسبة حقوق الملكية المستهدفة + ميزانية رأس المال"},{en:"Target equity ratio × Capital budget",ar:"نسبة حقوق الملكية المستهدفة × ميزانية رأس المال"},{en:"Capital budget / Target equity ratio",ar:"ميزانية رأس المال / نسبة حقوق الملكية المستهدفة"},{en:"Target equity ratio − Capital budget",ar:"نسبة حقوق الملكية المستهدفة − ميزانية رأس المال"}],correct:1,explanation:{en:"Equity needed = Target equity ratio × Capital budget. Residual = max(0, Earnings − Equity needed).",ar:"حقوق الملكية المطلوبة = نسبة حقوق الملكية المستهدفة × ميزانية رأس المال. المتبقي = max(0, الأرباح − حقوق الملكية المطلوبة)."}},
+{en:"Total dividend under Low-Regular-Extra = ",ar:"إجمالي الربح تحت سياسة المنخفض-المنتظم-والإضافي = ",options:[{en:"Regular only",ar:"المنتظم فقط"},{en:"Extra only",ar:"الإضافي فقط"},{en:"Regular + Extra",ar:"المنتظم + الإضافي"},{en:"Regular × Extra",ar:"المنتظم × الإضافي"}],correct:2,explanation:{en:"Total dividend = Regular dividend + Extra dividend (when EPS exceeds threshold).",ar:"إجمالي الربح = الربح المنتظم + الربح الإضافي (عندما تتجاوز EPS العتبة)."}}
+],
+scenario: [
+{en:"A firm has EPS=$4.50 and pays DPS=$1.80. Calculate payout ratio and retention ratio.",ar:"شركة لديها EPS=4.50$ وتدفع DPS=1.80$. احسب نسبة التوزيع ونسبة الاحتفاظ.",scenario:"Payout Ratio Calculation",options:[{en:"40%, 60%",ar:"40%، 60%"},{en:"60%, 40%",ar:"60%، 40%"},{en:"50%, 50%",ar:"50%، 50%"},{en:"30%, 70%",ar:"30%، 70%"}],correct:0,explanation:{en:"Payout ratio = 1.80/4.50 = 40%. Retention ratio = 1 − 40% = 60%.",ar:"نسبة التوزيع = 1.80/4.50 = 40%. نسبة الاحتفاظ = 1 − 40% = 60%."}},
+{en:"A firm has payout ratio 35% and EPS=$6.00. What is DPS?",ar:"شركة لديها نسبة توزيع 35% و EPS=6.00$. ما هو DPS؟",scenario:"DPS Calculation",options:[{en:"$1.80",ar:"1.80$"},{en:"$2.10",ar:"2.10$"},{en:"$2.50",ar:"2.50$"},{en:"$3.00",ar:"3.00$"}],correct:1,explanation:{en:"DPS = Payout ratio × EPS = 0.35 × 6.00 = $2.10.",ar:"DPS = نسبة التوزيع × EPS = 0.35 × 6.00 = 2.10$."}},
+{en:"Record date is Friday, March 14. What is ex-dividend date?",ar:"تاريخ التسجيل هو الجمعة 14 مارس. ما هو تاريخ ما عدا الأرباح؟",scenario:"Ex-Dividend Date",options:[{en:"March 10",ar:"10 مارس"},{en:"March 12",ar:"12 مارس"},{en:"March 14",ar:"14 مارس"},{en:"March 16",ar:"16 مارس"}],correct:1,explanation:{en:"Ex-dividend date = Record date − 2 business days = March 14 − 2 = March 12.",ar:"تاريخ ما عدا الأرباح = تاريخ التسجيل − يومين عمل = 14 مارس − 2 = 12 مارس."}},
+{en:"Constant payout 30%. EPS: Year1=$2, Year2=-$0.50, Year3=$4. Calculate DPS each year.",ar:"توزيع ثابت 30%. EPS: السنة1=2$، السنة2=-0.50$، السنة3=4$. احسب DPS كل سنة.",scenario:"Constant Payout Policy",options:[{en:"$0.60, $0.00, $1.20",ar:"0.60$، 0.00$، 1.20$"},{en:"$0.60, -$0.15, $1.20",ar:"0.60$، -0.15$، 1.20$"},{en:"$0.30, $0.00, $0.60",ar:"0.30$، 0.00$، 0.60$"},{en:"$0.60, $0.60, $0.60",ar:"0.60$، 0.60$، 0.60$"}],correct:0,explanation:{en:"Year1: 0.30×2=$0.60. Year2: Loss→$0.00. Year3: 0.30×4=$1.20.",ar:"السنة1: 0.30×2=0.60$. السنة2: خسارة→0.00$. السنة3: 0.30×4=1.20$."}},
+{en:"Regular dividend $2.00. EPS exceeds $5 for 2 consecutive years, then raises to $2.50. EPS: 2019=$4.50, 2020=$5.20, 2021=$5.50. Dividend in 2021?",ar:"ربح منتظم 2.00$. EPS تتجاوز 5$ لسنتين متتاليتين، ثم ترتفع إلى 2.50$. EPS: 2019=4.50$، 2020=5.20$، 2021=5.50$. الربح في 2021؟",scenario:"Regular Dividend Policy",options:[{en:"$2.00",ar:"2.00$"},{en:"$2.50",ar:"2.50$"},{en:"$2.25",ar:"2.25$"},{en:"$3.00",ar:"3.00$"}],correct:1,explanation:{en:"2020 and 2021 both > $5.00, so dividend increases to $2.50 in 2021.",ar:"2020 و 2021 كلاهما > 5.00$، لذا الربح يزيد إلى 2.50$ في 2021."}},
+{en:"Low-regular $0.40. Extra = 50% of EPS above $2.50. EPS=$4.00. Total dividend?",ar:"منتظم منخفض 0.40$. الإضافي = 50% من EPS فوق 2.50$. EPS=4.00$. إجمالي الربح؟",scenario:"Low-Regular-Extra Policy",options:[{en:"$0.40",ar:"0.40$"},{en:"$0.75",ar:"0.75$"},{en:"$1.15",ar:"1.15$"},{en:"$2.00",ar:"2.00$"}],correct:2,explanation:{en:"Extra = 0.50×(4.00−2.50) = 0.50×1.50 = $0.75. Total = 0.40+0.75 = $1.15.",ar:"الإضافي = 0.50×(4.00−2.50) = 0.50×1.50 = 0.75$. الإجمالي = 0.40+0.75 = 1.15$."}},
+{en:"Earnings=$5M, Capital budget=$3M, Target equity=60%. Residual dividend?",ar:"الأرباح=5 مليون$، ميزانية رأس المال=3 مليون$، حقوق الملكية المستهدفة=60%. الربح المتبقي؟",scenario:"Residual Dividend Policy",options:[{en:"$1.8M",ar:"1.8 مليون$"},{en:"$3.2M",ar:"3.2 مليون$"},{en:"$5.0M",ar:"5.0 مليون$"},{en:"$0",ar:"0"}],correct:1,explanation:{en:"Equity needed = 0.60×3M = $1.8M. Dividend = 5M−1.8M = $3.2M.",ar:"حقوق الملكية المطلوبة = 0.60×3M = 1.8 مليون$. الربح = 5M−1.8M = 3.2 مليون$."}},
+{en:"200,000 shares at $25. 5% stock dividend. New shares? New price?",ar:"200,000 سهم بـ 25$. ربح سهمي 5%. الأسهم الجديدة؟ السعر الجديد؟",scenario:"Stock Dividend",options:[{en:"10,000 new shares, $23.81",ar:"10,000 سهم جديد، 23.81$"},{en:"5,000 new shares, $24.50",ar:"5,000 سهم جديد، 24.50$"},{en:"10,000 new shares, $25.00",ar:"10,000 سهم جديد، 25.00$"},{en:"20,000 new shares, $22.50",ar:"20,000 سهم جديد، 22.50$"}],correct:0,explanation:{en:"New shares = 200,000×0.05 = 10,000. Total = 210,000. New price = (200,000×25)/210,000 = $23.81.",ar:"الأسهم الجديدة = 200,000×0.05 = 10,000. الإجمالي = 210,000. السعر الجديد = (200,000×25)/210,000 = 23.81$."}},
+{en:"100,000 shares at $80. 2-for-1 split. New shares? New price?",ar:"100,000 سهم بـ 80$. تقسيم 2-لـ-1. الأسهم الجديدة؟ السعر الجديد؟",scenario:"Stock Split",options:[{en:"200,000 shares, $40",ar:"200,000 سهم، 40$"},{en:"50,000 shares, $160",ar:"50,000 سهم، 160$"},{en:"100,000 shares, $80",ar:"100,000 سهم، 80$"},{en:"300,000 shares, $26.67",ar:"300,000 سهم، 26.67$"}],correct:0,explanation:{en:"New shares = 100,000×2 = 200,000. New price = 80/2 = $40.",ar:"الأسهم الجديدة = 100,000×2 = 200,000. السعر الجديد = 80/2 = 40$."}},
+{en:"$1M cash, 200,000 shares at $20. Shares repurchased? New EPS if earnings=$400,000?",ar:"1 مليون$ نقد، 200,000 سهم بـ 20$. الأسهم المعاد شراؤها؟ EPS الجديدة إذا الأرباح=400,000$؟",scenario:"Share Repurchase",options:[{en:"50,000 shares, $2.67 EPS",ar:"50,000 سهم، 2.67$ EPS"},{en:"20,000 shares, $2.22 EPS",ar:"20,000 سهم، 2.22$ EPS"},{en:"100,000 shares, $4.00 EPS",ar:"100,000 سهم، 4.00$ EPS"},{en:"25,000 shares, $2.29 EPS",ar:"25,000 سهم، 2.29$ EPS"}],correct:0,explanation:{en:"Shares repurchased = 1,000,000/20 = 50,000. New shares = 200,000−50,000 = 150,000. New EPS = 400,000/150,000 = $2.67.",ar:"الأسهم المعاد شراؤها = 1,000,000/20 = 50,000. الأسهم الجديدة = 200,000−50,000 = 150,000. EPS الجديدة = 400,000/150,000 = 2.67$."}}
+],
+classification: [
+{en:"Classify: Payout ratio = 40%. What is retention ratio?",ar:"صنّف: نسبة التوزيع = 40%. ما هي نسبة الاحتفاظ؟",options:[{en:"40%",ar:"40%"},{en:"60%",ar:"60%"},{en:"100%",ar:"100%"},{en:"0%",ar:"0%"}],correct:1,explanation:{en:"Retention ratio = 1 − Payout ratio = 1 − 40% = 60%.",ar:"نسبة الاحتفاظ = 1 − نسبة التوزيع = 1 − 40% = 60%."}},
+{en:"Classify: Constant payout policy with negative EPS.",ar:"صنّف: سياسة توزيع ثابتة مع EPS سالبة.",options:[{en:"Pay negative dividend",ar:"ادفع ربحًا سالبًا"},{en:"Pay zero dividend",ar:"ادفع ربحًا صفريًا"},{en:"Pay regular dividend",ar:"ادفع ربحًا منتظمًا"},{en:"Pay extra dividend",ar:"ادفع ربحًا إضافيًا"}],correct:1,explanation:{en:"When EPS ≤ 0, DPS = 0 under constant payout policy.",ar:"عندما EPS ≤ 0، DPS = 0 تحت سياسة التوزيع الثابتة."}},
+{en:"Classify: Policy that pays fixed $ amount regardless of earnings.",ar:"صنّف: السياسة التي تدفع مبلغًا ثابتًا بالدولار بغض النظر عن الأرباح.",options:[{en:"Constant payout",ar:"توزيع ثابت"},{en:"Regular dividend",ar:"ربح منتظم"},{en:"Residual",ar:"متبقي"},{en:"Low-regular-extra",ar:"منخفض-منتظم-إضافي"}],correct:1,explanation:{en:"Regular dividend policy pays fixed-dollar amount each period.",ar:"سياسة الربح المنتظم تدفع مبلغًا ثابتًا بالدولار كل فترة."}},
+{en:"Classify: Policy that prioritizes investment needs first.",ar:"صنّف: السياسة التي تعطي الأولوية لاحتياجات الاستثمار أولاً.",options:[{en:"Constant payout",ar:"توزيع ثابت"},{en:"Regular dividend",ar:"ربح منتظم"},{en:"Residual",ar:"متبقي"},{en:"Low-regular-extra",ar:"منخفض-منتظم-إضافي"}],correct:2,explanation:{en:"Residual dividend policy funds investments first, then pays dividends from what remains.",ar:"سياسة الربح المتبقي تمول الاستثمارات أولاً، ثم تدفع الأرباح مما يبقى."}},
+{en:"Classify: 5% stock dividend effect on shares.",ar:"صنّف: تأثير ربح سهمي 5% على الأسهم.",options:[{en:"Shares decrease",ar:"الأسهم تنخفض"},{en:"Shares increase",ar:"الأسهم تزيد"},{en:"No change",ar:"لا تغيير"},{en:"Shares double",ar:"الأسهم تتضاعف"}],correct:1,explanation:{en:"Stock dividend increases number of shares. New shares = Old × 5%.",ar:"الربح السهمي يزيد عدد الأسهم. الأسهم الجديدة = القديمة × 5%."}},
+{en:"Classify: 2-for-1 stock split effect on price.",ar:"صنّف: تأثير تقسيم الأسهم 2-لـ-1 على السعر.",options:[{en:"Price doubles",ar:"السعر يتضاعف"},{en:"Price halves",ar:"السعر ينصف"},{en:"No change",ar:"لا تغيير"},{en:"Price triples",ar:"السعر يتضاعف ثلاث مرات"}],correct:1,explanation:{en:"2-for-1 split: Price is halved. New price = Old / 2.",ar:"تقسيم 2-لـ-1: السعر ينصف. السعر الجديد = القديم / 2."}},
+{en:"Classify: Share repurchase effect on EPS.",ar:"صنّف: تأثير إعادة شراء الأسهم على EPS.",options:[{en:"EPS decreases",ar:"EPS تنخفض"},{en:"EPS increases",ar:"EPS تزيد"},{en:"No change",ar:"لا تغيير"},{en:"EPS becomes zero",ar:"EPS تصبح صفرًا"}],correct:1,explanation:{en:"Repurchase reduces shares outstanding, which can increase EPS (same earnings / fewer shares).",ar:"إعادة الشراء تقلل الأسهم القائمة، مما يمكن أن يزيد EPS (نفس الأرباح / أسهم أقل)."}},
+{en:"Classify: DRIP with 5% discount.",ar:"صنّف: DRIP مع خصم 5%.",options:[{en:"Full market price",ar:"سعر السوق الكامل"},{en:"95% of market price",ar:"95% من سعر السوق"},{en:"105% of market price",ar:"105% من سعر السوق"},{en:"No discount",ar:"لا خصم"}],correct:1,explanation:{en:"5% discount means shares purchased at 95% of market price.",ar:"خصم 5% يعني الأسهم تُشترى بـ 95% من سعر السوق."}},
+{en:"Classify: Ex-dividend date purchase.",ar:"صنّف: الشراء في تاريخ ما عدا الأرباح.",options:[{en:"Receives dividend",ar:"يستلم الربح"},{en:"Does NOT receive dividend",ar:"لا يستلم الربح"},{en:"Receives half dividend",ar:"يستلم نصف الربح"},{en:"Receives extra dividend",ar:"يستلم ربحًا إضافيًا"}],correct:1,explanation:{en:"Buying on or after ex-dividend date means investor does NOT receive the declared dividend.",ar:"الشراء في تاريخ ما عدا الأرباح أو بعده يعني أن المستثمر لا يستلم الربح المعلن."}},
+{en:"Classify: Reverse split 1-for-5 effect.",ar:"صنّف: تأثير التقسيم العكسي 1-لـ-5.",options:[{en:"Shares increase 5×, price /5",ar:"الأسهم تزيد 5 مرات، السعر /5"},{en:"Shares /5, price ×5",ar:"الأسهم /5، السعر ×5"},{en:"No change",ar:"لا تغيير"},{en:"Both increase",ar:"كلاهما يزيد"}],correct:1,explanation:{en:"1-for-5 reverse split: New shares = Old/5, New price = Old×5.",ar:"تقسيم عكسي 1-لـ-5: الأسهم الجديدة = القديمة/5، السعر الجديد = القديم×5."}}
+],
+truefalse: [
+{en:"Payout ratio + Retention ratio = 100%.",ar:"نسبة التوزيع + نسبة الاحتفاظ = 100%.",options:[{en:"True",ar:"صحيح"},{en:"False",ar:"خطأ"}],correct:0,explanation:{en:"True! Retention ratio = 1 − Payout ratio, so they sum to 100%.",ar:"صحيح! نسبة الاحتفاظ = 1 − نسبة التوزيع، لذا مجموعهما 100%."}},
+{en:"Under constant payout policy, dividends are paid even when there are losses.",ar:"تحت سياسة التوزيع الثابتة، تُدفع الأرباح حتى عند وجود خسائر.",options:[{en:"True",ar:"صحيح"},{en:"False",ar:"خطأ"}],correct:1,explanation:{en:"False! When EPS ≤ 0, DPS = 0. No dividends are paid during losses.",ar:"خطأ! عندما EPS ≤ 0، DPS = 0. لا تُدفع أرباح خلال الخسائر."}},
+{en:"Regular dividend policy rarely decreases dividends unless liquidity is in jeopardy.",ar:"سياسة الربح المنتظم نادرًا ما تقلل الأرباح إلا إذا كانت السيولة في خطر.",options:[{en:"True",ar:"صحيح"},{en:"False",ar:"خطأ"}],correct:0,explanation:{en:"True! Regular dividends are stable and almost never decreased unless the firm faces serious liquidity problems.",ar:"صحيح! الأرباح المنتظمة مستقرة ونادرًا ما تُقلل إلا إذا واجهت الشركة مشاكل سيولة خطيرة."}},
+{en:"Stock dividend increases total market value of the firm.",ar:"الربح السهمي يزيد إجمالي القيمة السوقية للشركة.",options:[{en:"True",ar:"صحيح"},{en:"False",ar:"خطأ"}],correct:1,explanation:{en:"False! Stock dividend increases shares but price declines proportionally. Total market value remains unchanged.",ar:"خطأ! الربح السهمي يزيد الأسهم لكن السعر ينخفض بشكل متناسب. إجمالي القيمة السوقية يبقى دون تغيير."}},
+{en:"Share repurchase can increase EPS by reducing shares outstanding.",ar:"إعادة شراء الأسهم يمكن أن تزيد EPS بتقليل الأسهم القائمة.",options:[{en:"True",ar:"صحيح"},{en:"False",ar:"خطأ"}],correct:0,explanation:{en:"True! Fewer shares outstanding with same earnings results in higher EPS.",ar:"صحيح! الأسهم القائمة الأقل مع نفس الأرباح تؤدي إلى EPS أعلى."}}
+]
+};
+
+let state = {playerName:'',questions:[],answers:{},stopwatch:null,elapsedSeconds:0,submitted:false,scoreSent:false,currentFilter:'all',showTranslation:true};
+
+function showConcepts(){document.getElementById('conceptsModal').classList.remove('hidden');}
+function closeConcepts(){document.getElementById('conceptsModal').classList.add('hidden');}
+
+function buildQuestions(){
+let q = [];
+allQuestions.mcq.forEach(function(item,i){q.push({en:item.en,ar:item.ar,options:item.options,correct:item.correct,explanation:item.explanation,category:'mcq',typeLabel:'MCQ',globalIndex:i});});
+allQuestions.scenario.forEach(function(item,i){q.push({en:item.en,ar:item.ar,options:item.options,correct:item.correct,explanation:item.explanation,scenario:item.scenario,category:'scenario',typeLabel:'SCENARIO',globalIndex:allQuestions.mcq.length+i});});
+allQuestions.classification.forEach(function(item,i){q.push({en:item.en,ar:item.ar,options:item.options,correct:item.correct,explanation:item.explanation,category:'classification',typeLabel:'CLASSIFY',globalIndex:allQuestions.mcq.length+allQuestions.scenario.length+i});});
+allQuestions.truefalse.forEach(function(item,i){q.push({en:item.en,ar:item.ar,options:item.options,correct:item.correct,explanation:item.explanation,category:'truefalse',typeLabel:'T/F',globalIndex:allQuestions.mcq.length+allQuestions.scenario.length+allQuestions.classification.length+i});});
+return q;
+}
+
+function startQuiz(){
+var name = document.getElementById('playerName').value.trim() || 'Learner';
+state.playerName = name;
+state.questions = buildQuestions();
+state.answers = {};
+state.elapsedSeconds = 0;
+state.submitted = false;
+state.currentFilter = 'all';
+state.showTranslation = true;
+document.getElementById('headerPlayerName').textContent = name;
+document.getElementById('welcomeScreen').classList.add('hidden');
+document.getElementById('quizScreen').classList.remove('hidden');
+document.getElementById('totalQuestions').textContent = state.questions.length;
+updateTranslationToggleUI();
+renderQuestions();
+startStopwatch();
+window.scrollTo(0,0);
+}
+
+function startStopwatch(){clearInterval(state.stopwatch);updateStopwatchDisplay();state.stopwatch = setInterval(function(){state.elapsedSeconds++;updateStopwatchDisplay();},1000);}
+function updateStopwatchDisplay(){var m = Math.floor(state.elapsedSeconds/60);var s = state.elapsedSeconds%60;document.getElementById('stopwatchDisplay').textContent = String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');}
+function formatTime(sec){var m = Math.floor(sec/60);var s = sec%60;return m+':'+String(s).padStart(2,'0');}
+
+function toggleGlobalTranslation(){
+state.showTranslation = !state.showTranslation;
+updateTranslationToggleUI();
+updateTranslationVisibility();
+}
+
+function updateTranslationToggleUI(){
+var btn = document.getElementById('globalTranslationToggle');
+var txt = document.getElementById('translationToggleText');
+if(state.showTranslation){btn.classList.add('active');txt.textContent = 'Hide Translation';}
+else{btn.classList.remove('active');txt.textContent = 'Show Translation';}
+}
+
+function updateTranslationVisibility(){
+var arElements = document.querySelectorAll('.arabic-content');
+for(var i=0;i<arElements.length;i++){
+if(state.showTranslation){arElements[i].classList.remove('hidden');arElements[i].classList.add('translation-visible');}
+else{arElements[i].classList.add('hidden');arElements[i].classList.remove('translation-visible');}
+}
+}
+
+function filterCategory(cat){
+state.currentFilter = cat;
+var btns = document.querySelectorAll('.filter-btn');
+for(var i=0;i<btns.length;i++){if(btns[i].dataset.filter === cat){btns[i].classList.add('active');}else{btns[i].classList.remove('active');}}
+var cards = document.querySelectorAll('.question-card');
+var dividers = document.querySelectorAll('.category-divider');
+for(var i=0;i<cards.length;i++){if(cat === 'all' || cards[i].dataset.category === cat){cards[i].classList.remove('hidden-q');}else{cards[i].classList.add('hidden-q');}}
+for(var i=0;i<dividers.length;i++){if(cat === 'all' || dividers[i].dataset.category === cat){dividers[i].classList.remove('hidden-q');}else{dividers[i].classList.add('hidden-q');}}
+setTimeout(function(){var firstVisible = document.querySelector('.question-card:not(.hidden-q)');if(firstVisible){var offset = 150;var top = firstVisible.getBoundingClientRect().top + window.pageYOffset - offset;window.scrollTo({top:top, behavior:'smooth'});}},100);
+}
+
+function renderQuestions(){
+var container = document.getElementById('questionsContainer');
+container.innerHTML = '';
+var currentCategory = '';
+var sectionTitles = {
+mcq:{title:'Multiple Choice Questions',icon:'list-check',color:'indigo',count:allQuestions.mcq.length},
+scenario:{title:'Scenario-Based Questions',icon:'file-lines',color:'rose',count:allQuestions.scenario.length},
+classification:{title:'Classification Questions',icon:'layer-group',color:'amber',count:allQuestions.classification.length},
+truefalse:{title:'True / False Questions',icon:'check-double',color:'emerald',count:allQuestions.truefalse.length}
+};
+
+state.questions.forEach(function(q,idx){
+if(q.category !== currentCategory){
+currentCategory = q.category;
+var sec = sectionTitles[q.category];
+var divider = document.createElement('div');
+divider.className = 'category-divider py-3';
+divider.dataset.category = q.category;
+divider.innerHTML = '<div class="glass-strong rounded-2xl p-4 flex items-center justify-between flex-wrap gap-2"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-'+sec.color+'-500/20 flex items-center justify-center"><i class="fas fa-'+sec.icon+' text-'+sec.color+'-400"></i></div><div><h3 class="font-bold text-'+sec.color+'-300">'+sec.title+'</h3><p class="text-xs text-slate-400">'+sec.count+' questions</p></div></div><button type="button" class="btn btn-outline px-3 py-1.5 rounded-lg text-xs filter-cat-btn" data-cat="'+q.category+'"><i class="fas fa-filter mr-1"></i>Show only this</button></div>';
+container.appendChild(divider);
+}
+
+var card = document.createElement('div');
+card.className = 'question-card glass-strong rounded-2xl p-5 md:p-6 fade-in';
+card.id = 'qcard-'+idx;
+card.dataset.category = q.category;
+card.dataset.index = idx;
+
+var userAnswer = state.answers[idx];
+var isAnswered = userAnswer !== undefined;
+var isCorrect = isAnswered && userAnswer === q.correct;
+var statusClass = '';
+if(isAnswered) statusClass = isCorrect ? 'answered-correct' : 'answered-wrong';
+
+var letters = ['A','B','C','D'];
+var optionsHtml = '';
+q.options.forEach(function(opt,i){
+var optClass = 'option-btn glass rounded-xl p-3 md:p-4 w-full border border-white/10';
+if(isAnswered){
+optClass += ' disabled';
+if(i === q.correct) optClass += ' correct';
+else if(i === userAnswer && !isCorrect) optClass += ' wrong';
+if(i === userAnswer) optClass += ' selected';
+}
+optionsHtml += '<button type="button" class="'+optClass+'" data-opt="'+i+'" data-qidx="'+idx+'"><div class="flex items-start gap-3"><span class="letter w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-sm font-bold text-slate-300 flex-shrink-0">'+letters[i]+'</span><div class="flex-1 text-left option-bilingual"><div class="option-en">'+opt.en+'</div><div class="option-ar arabic-content'+(state.showTranslation?'':' hidden')+'">'+opt.ar+'</div></div></div></button>';
+});
+
+var scenarioHtml = q.scenario ? '<div class="glass rounded-xl p-3 mb-4 border-r-4 border-rose-500"><p class="text-sm text-rose-200"><i class="fas fa-quote-right mr-2 text-rose-400"></i><strong>Scenario:</strong> '+q.scenario+'</p></div>' : '';
+
+var statusBadge = isAnswered ? (isCorrect ? '<span class="badge bg-emerald-500/20 text-emerald-300 text-xs"><i class="fas fa-check-circle"></i> Correct</span>' : '<span class="badge bg-rose-500/20 text-rose-300 text-xs"><i class="fas fa-times-circle"></i> Wrong</span>') : '<span class="badge bg-slate-500/20 text-slate-300 text-xs"><i class="fas fa-circle"></i> Unanswered</span>';
+
+card.className += ' '+statusClass;
+card.innerHTML = '<div class="flex items-start justify-between mb-3 flex-wrap gap-2"><div class="flex items-center gap-2 flex-wrap"><span class="text-xs font-bold text-slate-500">#'+(q.globalIndex+1)+'</span><span class="badge bg-'+sectionTitles[q.category].color+'-500/20 text-'+sectionTitles[q.category].color+'-300 text-xs">'+q.typeLabel+'</span>'+statusBadge+'</div></div><div class="mb-4 bilingual-q"><div class="bilingual-en">'+q.en+'</div><div class="bilingual-ar arabic-content'+(state.showTranslation?'':' hidden')+'">'+q.ar+'</div></div>'+scenarioHtml+'<div class="space-y-2 mb-4">'+optionsHtml+'</div><div class="flex flex-wrap gap-2"><button type="button" class="btn btn-rose px-4 py-2 rounded-lg text-xs explanation-toggle-btn" data-idx="'+idx+'"><i class="fas fa-lightbulb mr-1"></i>Show Answer / Explanation</button>'+(isAnswered ? '<button type="button" class="btn btn-outline px-4 py-2 rounded-lg text-xs clear-btn" data-idx="'+idx+'"><i class="fas fa-eraser mr-1"></i>Clear</button>' : '')+'</div><div id="exp-'+idx+'" class="hidden mt-3 glass rounded-xl p-4 border-r-4 border-rose-500 explanation-box"><h5 class="font-bold text-rose-300 mb-2 text-sm"><i class="fas fa-lightbulb mr-2"></i>Explanation</h5><div class="mb-3"><p class="text-sm text-white leading-relaxed mb-2">'+q.explanation.en+'</p></div><div class="bilingual-ar arabic-content'+(state.showTranslation?'':' hidden')+'" style="padding:10px 14px;background:rgba(244,63,94,.06);border-radius:10px;border-right:3px solid #f43f5e">'+q.explanation.ar+'</div></div>';
+container.appendChild(card);
+});
+
+var optBtns = document.querySelectorAll('.option-btn');
+for(var i=0;i<optBtns.length;i++){optBtns[i].addEventListener('click', function(){selectAnswer(parseInt(this.dataset.qidx), parseInt(this.dataset.opt));});}
+var expBtns = document.querySelectorAll('.explanation-toggle-btn');
+for(var i=0;i<expBtns.length;i++){expBtns[i].addEventListener('click', function(){toggleExplanation(parseInt(this.dataset.idx));});}
+var clearBtns = document.querySelectorAll('.clear-btn');
+for(var i=0;i<clearBtns.length;i++){clearBtns[i].addEventListener('click', function(){clearAnswer(parseInt(this.dataset.idx));});}
+var filterCatBtns = document.querySelectorAll('.filter-cat-btn');
+for(var i=0;i<filterCatBtns.length;i++){filterCatBtns[i].addEventListener('click', function(){filterCategory(this.dataset.cat);});}
+
+updateProgress();
+}
+
+function selectAnswer(qIdx,optIdx){if(state.submitted) return;if(state.answers[qIdx] === optIdx) return;state.answers[qIdx] = optIdx;renderQuestions();if(state.currentFilter !== 'all') filterCategory(state.currentFilter);}
+function clearAnswer(qIdx){if(state.submitted) return;delete state.answers[qIdx];renderQuestions();if(state.currentFilter !== 'all') filterCategory(state.currentFilter);}
+function toggleExplanation(qIdx){var el = document.getElementById('exp-'+qIdx);if(el) el.classList.toggle('hidden');}
+
+function updateProgress(){
+var total = state.questions.length;
+var answered = Object.keys(state.answers).length;
+var pct = Math.round((answered/total)*100);
+document.getElementById('progressBar').style.width = pct+'%';
+document.getElementById('answeredCount').textContent = answered+' answered';
+document.getElementById('progressPercent').textContent = pct+'%';
+var score = 0;
+var keys = Object.keys(state.answers);
+for(var i=0;i<keys.length;i++){var idx = keys[i];if(state.questions[idx].correct === state.answers[idx]) score++;}
+document.getElementById('scoreDisplay').textContent = score;
+}
+
+function submitQuiz(){var total = state.questions.length;var answered = Object.keys(state.answers).length;if(answered < total){if(!confirm('You have answered '+answered+' out of '+total+' questions. Submit anyway?')) return;}clearInterval(state.stopwatch);state.submitted = true;showResults();}
+
+function showResults(){
+document.getElementById('quizScreen').classList.add('hidden');
+document.getElementById('resultsScreen').classList.remove('hidden');
+var total = state.questions.length;
+var score = 0;
+var catScores = {mcq:{c:0,t:allQuestions.mcq.length},scenario:{c:0,t:allQuestions.scenario.length},classification:{c:0,t:allQuestions.classification.length},truefalse:{c:0,t:allQuestions.truefalse.length}};
+var keys = Object.keys(state.answers);
+for(var i=0;i<keys.length;i++){var idx = keys[i];var q = state.questions[idx];if(q.correct === state.answers[idx]){score++;catScores[q.category].c++;}}
+var pct = Math.round((score/total)*100);
+/* 🎯 EBRA — إرسال الدرجة مرة واحدة، عند تسليم المستخدم فقط */
+if(state.submitted && !state.scoreSent && window.EBRA && window.EBRA.trackScore){
+state.scoreSent = true;
+window.EBRA.trackScore(score, total, "Adv. Corporate Finance — Ch3");
+}
+document.getElementById('resultPlayerName').textContent = state.playerName;
+document.getElementById('finalScore').textContent = score;
+document.getElementById('totalPossible').textContent = total;
+document.getElementById('percentage').textContent = pct;
+document.getElementById('correctCount').textContent = score;
+document.getElementById('wrongCount').textContent = total - score;
+document.getElementById('totalTime').textContent = formatTime(state.elapsedSeconds);
+document.getElementById('avgTime').textContent = Math.round(state.elapsedSeconds/total)+'s';
+var grade='',gradeClass='';
+if(pct>=90){grade='Excellent 🏆';gradeClass='bg-gradient-to-r from-amber-400 to-amber-600';}
+else if(pct>=75){grade='Very Good 🌟';gradeClass='bg-gradient-to-r from-teal-500 to-teal-600';}
+else if(pct>=60){grade='Good 👍';gradeClass='bg-gradient-to-r from-emerald-500 to-emerald-600';}
+else if(pct>=50){grade='Acceptable ';gradeClass='bg-gradient-to-r from-indigo-500 to-indigo-600';}
+else{grade='Needs Review 💪';gradeClass='bg-gradient-to-r from-rose-500 to-rose-600';}
+var gb = document.getElementById('gradeBadge');gb.textContent = grade;gb.className = 'inline-block text-lg px-6 py-2 mt-2 rounded-full font-bold text-white '+gradeClass;
+var breakdown = document.getElementById('categoryBreakdown');breakdown.innerHTML = '';
+var cats = [{key:'mcq',name:'MCQ Questions',color:'indigo',icon:'list-check'},{key:'scenario',name:'Scenario Based',color:'rose',icon:'file-lines'},{key:'classification',name:'Classification',color:'amber',icon:'layer-group'},{key:'truefalse',name:'True / False',color:'emerald',icon:'check-double'}];
+cats.forEach(function(c){var s = catScores[c.key];var p = Math.round((s.c/s.t)*100);breakdown.innerHTML += '<div><div class="flex justify-between text-sm mb-1"><span class="text-slate-300"><i class="fas fa-'+c.icon+' text-'+c.color+'-400 mr-1"></i>'+c.name+'</span><span class="text-'+c.color+'-400 font-bold">'+s.c+'/'+s.t+' ('+p+'%)</span></div><div class="w-full bg-slate-800/50 rounded-full h-2 overflow-hidden"><div class="h-full rounded-full bg-'+c.color+'-500 transition-all duration-1000" style="width:'+p+'%"></div></div></div>';});
+var badges = document.getElementById('badgesContainer');badges.innerHTML = '';
+var earned = [];
+if(pct===100) earned.push({icon:'crown',name:'Perfect Score',color:'amber'});
+if(pct>=90) earned.push({icon:'trophy',name:'Excellence',color:'amber'});
+if(pct>=75) earned.push({icon:'star',name:'Outstanding',color:'teal'});
+if(pct>=60) earned.push({icon:'medal',name:'Good Performance',color:'emerald'});
+if(state.elapsedSeconds/total < 20) earned.push({icon:'bolt',name:'Speed Master',color:'rose'});
+if(catScores.mcq.c===20) earned.push({icon:'brain',name:'MCQ Genius',color:'indigo'});
+if(catScores.scenario.c===10) earned.push({icon:'user-tie',name:'Scenario Analyst',color:'rose'});
+if(catScores.classification.c===10) earned.push({icon:'layer-group',name:'Classification Pro',color:'amber'});
+if(catScores.truefalse.c===5) earned.push({icon:'check-double',name:'T/F Master',color:'emerald'});
+if(earned.length===0) earned.push({icon:'book',name:'Keep Learning',color:'slate'});
+earned.forEach(function(b){badges.innerHTML += '<div class="glass rounded-xl px-4 py-3 flex items-center gap-2"><i class="fas fa-'+b.icon+' text-'+b.color+'-400 text-xl"></i><span class="text-sm font-bold text-'+b.color+'-300">'+b.name+'</span></div>';});
+window.scrollTo(0,0);
+}
+
+function reviewAnswers(){
+document.getElementById('resultsScreen').classList.add('hidden');
+document.getElementById('reviewScreen').classList.remove('hidden');
+var container = document.getElementById('reviewContainer');
+container.innerHTML = '';
+state.questions.forEach(function(q,idx){
+var userAns = state.answers[idx];
+var answered = userAns !== undefined;
+var isCorrect = answered && userAns === q.correct;
+var statusClass = answered ? (isCorrect ? 'border-emerald-500/30' : 'border-rose-500/30') : 'border-amber-500/30';
+var statusIcon = answered ? (isCorrect ? 'fa-check-circle text-emerald-400' : 'fa-times-circle text-rose-400') : 'fa-minus-circle text-amber-400';
+var statusText = answered ? (isCorrect ? 'Correct' : 'Wrong') : 'Skipped';
+var userText = answered ? q.options[userAns].en : 'Not answered';
+var correctText = q.options[q.correct].en;
+container.innerHTML += '<div class="glass-strong rounded-2xl p-5 border-r-4 '+statusClass+'"><div class="flex items-center justify-between mb-3 flex-wrap gap-2"><span class="text-xs text-slate-500">#'+(idx+1)+' - '+q.typeLabel+'</span><span class="flex items-center gap-1 text-sm"><i class="fas '+statusIcon+'"></i>'+statusText+'</span></div><div class="bilingual-q mb-3"><div class="bilingual-en text-sm">'+q.en+'</div><div class="bilingual-ar arabic-content">'+q.ar+'</div></div><div class="text-xs mb-2"><span class="text-slate-500">Your answer:</span> <span class="'+(isCorrect?'text-emerald-400':'text-rose-400')+'">'+userText+'</span></div>'+(isCorrect?'':'<div class="text-xs mb-2"><span class="text-slate-500">Correct answer:</span> <span class="text-emerald-400">'+correctText+'</span></div>')+'<details class="mt-2"><summary class="text-xs text-rose-400 cursor-pointer hover:text-rose-300">Show explanation</summary><div class="mt-2"><p class="text-xs text-slate-300 leading-relaxed mb-2">'+q.explanation.en+'</p><div class="bilingual-ar arabic-content" style="padding:8px 12px">'+q.explanation.ar+'</div></div></details></div>';
+});
+window.scrollTo(0,0);
+}
+
+function backToResults(){document.getElementById('reviewScreen').classList.add('hidden');document.getElementById('resultsScreen').classList.remove('hidden');window.scrollTo(0,0);}
+
+function restartQuiz(){
+if(!confirm('Restart the quiz?')) return;
+clearInterval(state.stopwatch);
+state = {playerName:'',questions:[],answers:{},stopwatch:null,elapsedSeconds:0,submitted:false,scoreSent:false,currentFilter:'all',showTranslation:true};
+document.getElementById('quizScreen').classList.add('hidden');
+document.getElementById('resultsScreen').classList.add('hidden');
+document.getElementById('reviewScreen').classList.add('hidden');
+document.getElementById('welcomeScreen').classList.remove('hidden');
+window.scrollTo(0,0);
+}
+
+function exportToWord(){
+var now = new Date();
+var dateStr = now.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+var timeStr = now.toLocaleTimeString('en-US');
+var total = state.questions.length;
+var score = 0;
+var keys = Object.keys(state.answers);
+for(var i=0;i<keys.length;i++){var idx = keys[i];if(state.questions[idx].correct === state.answers[idx]) score++;}
+var pct = total>0 ? Math.round((score/total)*100) : 0;
+var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>Dividends Policy Quiz Report</title><style>body{font-family:Calibri,sans-serif;color:#1a1a2e;line-height:1.6;padding:20px}h1{color:#0d9488;border-bottom:3px solid #f43f5e;padding-bottom:10px;font-size:24pt}h2{color:#6366f1;margin-top:25px;font-size:16pt;border-bottom:1px solid #e5e7eb;padding-bottom:5px}.info-box{background:#f0fdfa;border:1px solid #99f6e4;padding:12px;border-radius:8px;margin:15px 0}.score-box{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #f59e0b;padding:15px;border-radius:10px;text-align:center;margin:20px 0}.score-big{font-size:32pt;font-weight:bold;color:#92400e}.question{background:#f9fafb;border-left:4px solid #14b8a6;padding:12px;margin:15px 0;border-radius:5px;page-break-inside:avoid}.question.correct{border-left-color:#10b981}.question.wrong{border-left-color:#f43f5e}.question.skipped{border-left-color:#f59e0b}.q-title{font-weight:bold;color:#1e293b;margin-bottom:8px;font-size:11pt}.q-arabic{color:#475569;font-size:10pt;margin-bottom:8pt;direction:rtl;text-align:right}.option{margin:4px 0;padding:4px 8px;font-size:10pt}.option.selected-correct{background:#d1fae5;color:#065f46;font-weight:bold;border-radius:4px}.option.selected-wrong{background:#ffe4e6;color:#9f1239;text-decoration:line-through;border-radius:4px}.option.correct-answer{background:#dcfce7;color:#166534;font-weight:bold;border-radius:4px}.explanation{background:#fff1f2;border-left:3px solid #f43f5e;padding:10px;margin-top:10px;font-size:10pt;color:#881337;border-radius:4px}.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:9pt;font-weight:bold;margin:2px}.badge-correct{background:#10b981;color:white}.badge-wrong{background:#f43f5e;color:white}.badge-skipped{background:#f59e0b;color:white}table{width:100%;border-collapse:collapse;margin:15px 0}th{background:#0d9488;color:white;padding:8px;text-align:left}td{border:1px solid #e5e7eb;padding:8px}.footer{text-align:center;margin-top:30px;padding-top:15px;border-top:2px solid #e5e7eb;color:#64748b;font-size:9pt}</style></head><body><h1>Dividends & Payout Policy Quiz - Report</h1><p style="color:#64748b;font-size:10pt">Chapter 14: Dividends Payout Policy | Ross, Westerfield, Jordan</p><div class="info-box"><strong>Student:</strong> '+state.playerName+'<br><strong>Date:</strong> '+dateStr+' '+timeStr+'<br><strong>Total Time:</strong> '+formatTime(state.elapsedSeconds)+'<br><strong>Total Questions:</strong> '+total+'<br><strong>Answered:</strong> '+Object.keys(state.answers).length+' / '+total+'</div><div class="score-box"><div style="font-size:11pt;color:#92400e;margin-bottom:5px">Final Score</div><div class="score-big">'+score+' / '+total+'</div><div style="font-size:18pt;color:#b45309;font-weight:bold">'+pct+'%</div></div><h2>Summary by Category</h2><table><tr><th>Category</th><th>Correct</th><th>Total</th><th>Percentage</th></tr>';
+var cats = [{key:'mcq',name:'MCQ Questions'},{key:'scenario',name:'Scenario Based'},{key:'classification',name:'Classification'},{key:'truefalse',name:'True / False'}];
+cats.forEach(function(c){var catQs = state.questions.filter(function(q){return q.category===c.key;});var catCorrect = catQs.filter(function(q){return state.answers[q.globalIndex] === q.correct;}).length;var catTotal = catQs.length;var catPct = Math.round((catCorrect/catTotal)*100);html += '<tr><td>'+c.name+'</td><td>'+catCorrect+'</td><td>'+catTotal+'</td><td>'+catPct+'%</td></tr>';});
+html += '</table>';
+var sections = [{key:'mcq',title:'Multiple Choice Questions'},{key:'scenario',title:'Scenario-Based Questions'},{key:'classification',title:'Classification Questions'},{key:'truefalse',title:'True / False Questions'}];
+sections.forEach(function(sec){html += '<h2>'+sec.title+'</h2>';state.questions.filter(function(q){return q.category===sec.key;}).forEach(function(q){var idx = q.globalIndex;var userAns = state.answers[idx];var answered = userAns !== undefined;var isCorrect = answered && userAns === q.correct;var statusClass = answered ? (isCorrect ? 'correct' : 'wrong') : 'skipped';var statusBadge = answered ? (isCorrect ? '<span class="badge badge-correct">Correct</span>' : '<span class="badge badge-wrong">Wrong</span>') : '<span class="badge badge-skipped">Skipped</span>';var letters = ['A','B','C','D'];html += '<div class="question '+statusClass+'"><div class="q-title">Q'+(idx+1)+'. '+q.en+' '+statusBadge+'</div><div class="q-arabic">'+q.ar+'</div>';if(q.scenario) html += '<p style="background:#fff1f2;padding:6px;border-radius:4px;font-size:10pt;color:#881337"><em>'+q.scenario+'</em></p>';q.options.forEach(function(opt,i){var cls = 'option';if(i === q.correct) cls += ' correct-answer';if(answered && i === userAns){cls = isCorrect ? 'option selected-correct' : 'option selected-wrong';}html += '<div class="'+cls+'">'+letters[i]+'. '+opt.en+' | '+opt.ar+'</div>';});html += '<div class="explanation"><strong>Explanation:</strong> '+q.explanation.en+'<br><em style="direction:rtl;display:block;text-align:right;margin-top:5px">'+q.explanation.ar+'</em></div></div>';});});
+html += '<div class="footer"><p><strong>Generated:</strong> '+dateStr+' '+timeStr+'</p><p>Advanced Corporate Finance - Chapter 14: Dividends Payout Policy</p></div></body></html>';
+var blob = new Blob(['\ufeff',html],{type:'application/msword'});
+var url = URL.createObjectURL(blob);
+var a = document.createElement('a');
+a.href = url;
+a.download = 'Dividends_Policy_Quiz_'+state.playerName.replace(/\s+/g,'_')+'_'+now.toISOString().slice(0,10)+'.doc';
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+URL.revokeObjectURL(url);
+}
+
+document.getElementById('reviewConceptsBtn').addEventListener('click', showConcepts);
+document.getElementById('startQuizBtn').addEventListener('click', startQuiz);
+document.getElementById('gotItBtn').addEventListener('click', closeConcepts);
+document.getElementById('closeModalBtn').addEventListener('click', closeConcepts);
+document.getElementById('submitQuizBtn').addEventListener('click', submitQuiz);
+document.getElementById('restartBtn1').addEventListener('click', restartQuiz);
+document.getElementById('restartBtn2').addEventListener('click', restartQuiz);
+document.getElementById('reviewAnswersBtn').addEventListener('click', reviewAnswers);
+document.getElementById('backToResultsBtn').addEventListener('click', backToResults);
+document.getElementById('backToResultsBtn2').addEventListener('click', backToResults);
+document.getElementById('exportWordBtn1').addEventListener('click', exportToWord);
+document.getElementById('exportWordBtn2').addEventListener('click', exportToWord);
+document.getElementById('exportWordBtn3').addEventListener('click', exportToWord);
+document.getElementById('globalTranslationToggle').addEventListener('click', toggleGlobalTranslation);
+
+var filterBtns = document.querySelectorAll('.filter-btn');
+for(var i=0;i<filterBtns.length;i++){filterBtns[i].addEventListener('click', function(){filterCategory(this.dataset.filter);});}
+
+document.getElementById('conceptsModal').addEventListener('click', function(e){if(e.target === this) closeConcepts();});
+
+})();
+</script>
+<!-- 🎯 جزء تتبع الدرجات (نائم في غير الكويزات) -->
+<script>
+(function () {
+  var TRACK_URL = "https://script.google.com/macros/s/AKfycbzWhqHm8sl_fogZTB_E_WEgBwJjke3qZ574Yj8f8gI9_KYUelzA4-EI2azlvFE96YlC/exec";
+  var MAX_SCORE = 10;   // ← العظمى الافتراضية عندما لا تذكر النتيجةُ علتها
+  var QUIZZES = [
+    // { selector: "#q1-result", label: "Ch1 Quiz 1" },
+    // { selector: "#q2-result", label: "Ch1 Quiz 2" },
+  ];
+
+  var vid;
+  try {
+    var pm = location.search.match(/[?&]ebra_vid=([^&]+)/);
+    if (pm) {
+      vid = decodeURIComponent(pm[1]);
+      localStorage.setItem("ebra_vid", vid);
+    } else {
+      vid = localStorage.getItem("ebra_vid");
+      if (!vid) {
+        vid = "v-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 9);
+        localStorage.setItem("ebra_vid", vid);
+      }
+    }
+  } catch (e) { vid = "v-na"; }
+
+  function post(score, max, label) {
+    fetch(TRACK_URL, {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        type: "score",
+        visitorId: vid,
+        quiz: label || "Quiz",
+        score: score,
+        max: max,
+        percent: Math.round((score / max) * 100),
+        page: location.origin + location.pathname
+      })
+    }).catch(function () {});
+  }
+
+  function parseScore(txt) {
+    txt = txt || "";
+    var m = txt.match(/(\d+(?:[.,]\d+)?)\s*(?:\/|من|out of|-)\s*(\d+)/) || txt.match(/(\d+(?:[.,]\d+)?)/);
+    if (!m) return null;
+    return {
+      score: parseFloat(m[1].replace(",", ".")),
+      max: m[2] ? parseFloat(m[2]) : null
+    };
+  }
+
+  /* 3) اليدوي */
+  var lastManual = {};
+  window.EBRA = window.EBRA || {};
+  window.EBRA.trackScore = function (score, max, label) {
+    var k = label + "|" + score + "/" + max;
+    var now = Date.now();
+    if (lastManual[k] && now - lastManual[k] < 3000) return;
+    lastManual[k] = now;
+    post(Number(score), Number(max) || MAX_SCORE, label);
+  };
+
+  /* 1) + 2) المسح التلقائي */
+  var lastSel = {};
+  function scan() {
+    for (var i = 0; i < QUIZZES.length; i++) {
+      var qz = QUIZZES[i];
+      var el = document.querySelector(qz.selector);
+      if (!el) continue;
+      var p = parseScore(el.textContent);
+      if (!p) continue;
+      if (lastSel[qz.selector] === p.score) continue;   // إعادة المحاولة بنفس الدرجة لا تُكرر
+      lastSel[qz.selector] = p.score;
+      post(p.score, p.max || MAX_SCORE, qz.label);
+    }
+    var els = document.querySelectorAll("[data-ebra-quiz]");
+    for (var j = 0; j < els.length; j++) {
+      var el2 = els[j];
+      if (el2.getAttribute("data-ebra-done")) continue;
+      var p2 = parseScore(el2.textContent);
+      if (!p2) continue;
+      el2.setAttribute("data-ebra-done", "1");
+      post(p2.score, p2.max || MAX_SCORE, el2.getAttribute("data-ebra-quiz"));
+    }
+  }
+
+  var timer = null;
+  function queueScan() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(scan, 400);
+  }
+  try {
+    var mo = new MutationObserver(queueScan);
+    mo.observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+  } catch (e) {
+    setInterval(queueScan, 1500);
+  }
+  document.addEventListener("DOMContentLoaded", queueScan);
+  window.addEventListener("load", queueScan);
+})();
+</script>
+
+<!-- 📡 جزء تتبع الزيارات -->
+<script>
+(function () {
+  var TRACK_URL = "https://script.google.com/macros/s/AKfycbzWhqHm8sl_fogZTB_E_WEgBwJjke3qZ574Yj8f8gI9_KYUelzA4-EI2azlvFE96YlC/exec";
+  var vid;
+  try {
+    var pm = location.search.match(/[?&]ebra_vid=([^&]+)/);
+    if (pm) {
+      vid = decodeURIComponent(pm[1]);
+      localStorage.setItem("ebra_vid", vid);
+    } else {
+      vid = localStorage.getItem("ebra_vid");
+      if (!vid) {
+        vid = "v-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 9);
+        localStorage.setItem("ebra_vid", vid);
+      }
+    }
+  } catch (e) { vid = "v-na"; }
+  fetch(TRACK_URL, {
+    method: "POST",
+    mode: "cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({
+      visitorId: vid,
+      page: location.origin + location.pathname,
+      referrer: document.referrer || "Direct",
+      language: navigator.language || "",
+      screen: window.screen ? (screen.width + "x" + screen.height) : "",
+      ua: navigator.userAgent
+    })
+  }).catch(function () {});
+})();
+</script>
+
+</body>
+</html>
